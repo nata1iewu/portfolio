@@ -3,4 +3,43 @@ body {
 	   and use the OS’s UI font as the website font
 	 */
   font: 100%/1.5 system-ui;
+  max-width: 100ch;
+  margin-inline: max(1em, (100% - 100ch) / 2);
+  padding: 1em;
+}
+
+nav li {
+  display: contents;
+}
+
+nav {
+  display: flex;
+  border-bottom: 1px solid oklch(80% 3% 200);
+  margin-bottom: 2em;
+}
+
+nav a {
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.5em;
+}
+
+:root {
+  --color-accent: oklch(0.776 0.0818 98.47);
+}
+
+html {
+  accent-color: var(--color-accent);
+}
+
+nav a.current {
+  border-bottom: 0.4em solid var(--color-accent);
+  padding: 0.1em;
+}
+
+nav a.hover {
+  border-bottom: 0.4em solid var(--color-accent);
+  background-color: oklch(from var(--color-accent) 95% 5% h);
 }
