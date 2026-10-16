@@ -42,7 +42,7 @@ nav a.current {
 
 nav a:hover {
   border-bottom: 0.4em solid var(--color-accent);
-  background-color: oklch(from var(--color-accent) 95% 5% h);
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
 input,
@@ -97,4 +97,25 @@ h5,
 h6 {
   line-height: 1.1;
   text-wrap: balance;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1em;
+  font-size: 80%;
+  font-family: inherit;
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.color-scheme select {
+  font: inherit;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
 }

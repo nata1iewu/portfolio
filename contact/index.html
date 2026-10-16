@@ -11,29 +11,29 @@
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li><a href="/portfolio/">Home</a></li>
-            <li><a href="/portfolio/projects/">Projects</a></li>
-            <li><a href="/portfolio/resume/">Resume</a></li>
-            <li><a href="/portfolio/contact/">Contact</a></li>
-        </ul>
-    </nav>
     <h1>Contact Information</h1>
-    <form action="mailto:nataliesywu@gmail.com" method="POST" enctype="text/plain">
+    <form action="mailto:nataliesywu@gmail.com" method="GET" enctype="contact-form">
         <label>
-            Email Address:
-            <input type="email" name="email">
+            Name:
+            <input type="text" name="name" required placeholder="Your Name">
         </label>
+
+        <label>
+            Email:
+            <input type="email" name="email" required placeholder="your.email@example.com">
+        </label>
+
         <label>
             Subject:
-            <input name="subject">
+            <input type="text" name="subject" required placeholder="Subject">
         </label>
+
         <label>
             Message:
-            <textarea name="body"></textarea>
+            <textarea name="body" rows="5" required placeholder="Write your message here..."></textarea>
         </label>
-        <button>Submit</button>
+
+        <button type="submit">Send Message</button>
     </form>
 </body>
 
