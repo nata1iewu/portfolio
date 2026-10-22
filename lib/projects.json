@@ -2,37 +2,37 @@
     {
         "title": "nsywnails.com - Nail Website",
         "year": 2026,
-        "image": "https://nata1iewu.github.io/portfolio/images/nsyw.jpg",
+        "image": "/images/nsyw.jpg",
         "description": "Designed and developed a website for my nail business that showcases my nail art and allows clients to book appointments online. I built a custom appointment booking system to create a more convenient experience for clients. The website acts as a professional way to establish my small business."
     },
     {
         "title": "Cooking Time Predictor",
         "year": 2026,
-        "image": "https://nata1iewu.github.io/portfolio/images/yum.jpg",
+        "image": "/images/yum.jpg",
         "description": "DSC 80 Final Project using Food.com data. Analyzed recipe data to investigate the relationship between recipe characteristics and cooking time. Used Python to clean and explore the dataset, identify patterns in factors, and develop machine learning models to predict recipe preparation time."
     },
     {
         "title": "Nail Appointment Scheduler",
         "year": 2025,
-        "image": "https://nata1iewu.github.io/portfolio/images/nailb.jpg",
+        "image": "/images/nailb.jpg",
         "description": "Prior to building my website, I booked nail appointments via Google Forms which was often tedious to manually assign appointments. I built a way to automate the asisgnment process using Python Pandas and connected it to my Google Forms results CSV in order to quickly schedule my month."
     },
     {
         "title": "Personal Portfolio",
         "year": 2026,
-        "image": "https://nata1iewu.github.io/portfolio/images/natawee.jpg",
+        "image": "/images/natawee.jpg",
         "description": "Portfolio Website"
     },
     {
         "title": "NYPD Pepper Spray",
         "year": 2026,
-        "image": "https://nata1iewu.github.io/portfolio/images/pepper.jpg",
+        "image": "/images/pepper.jpg",
         "description": "DSC 106 Project 2"
     },
     {
         "title": "Song Recommender",
         "year": 2025,
-        "image": "https://nata1iewu.github.io/portfolio/images/taylor.jpg",
+        "image": "/images/taylor.jpg",
         "description": "DSC 10 Midterm Project"
     },
     {
