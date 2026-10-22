@@ -14,25 +14,25 @@
     {
         "title": "Nail Appointment Scheduler",
         "year": 2025,
-        "image": "/images/nailbooks.jpg",
+        "image": "/images/nailb.jpg",
         "description": "Prior to building my website, I booked nail appointments via Google Forms which was often tedious to manually assign appointments. I built a way to automate the asisgnment process using Python Pandas and connected it to my Google Forms results CSV in order to quickly schedule my month."
     },
     {
         "title": "Personal Portfolio",
         "year": 2026,
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "image": "/images/natawee.jpg",
         "description": "Portfolio Website"
     },
     {
         "title": "NYPD Pepper Spray",
         "year": 2026,
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "image": "/images/pepper.jpg",
         "description": "DSC 106 Project 2"
     },
     {
         "title": "Song Recommender",
         "year": 2025,
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "image": "/images/taylor.jpg",
         "description": "DSC 10 Midterm Project"
     },
     {
