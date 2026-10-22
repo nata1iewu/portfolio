@@ -28,7 +28,7 @@ nav a {
 }
 
 :root {
-  --color-accent: oklch(0.776 0.0818 98.47);
+  --color-accent: oklch(57.026% 0.06961 147.844);
 }
 
 html {
@@ -69,7 +69,7 @@ form button {
 
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fill minmax(15em, 1fr));
+  grid-template-columns: repeat(3, minmax(15em, 1fr));
   gap: 1em;
 }
 
@@ -118,4 +118,39 @@ html {
   font: inherit;
   padding: 0.2em 0.4em;
   border-radius: 4px;
+}
+
+.github-stats {
+  margin-block: 2rem;
+}
+
+#profile-stats dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 12px;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+#profile-stats dt {
+  grid-row: 1;
+  font-size: 0.9rem;
+  color: var(--text-color, #666);
+}
+
+#profile-stats dd {
+  grid-row: 2;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.projects img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
 }
