@@ -1,51 +1,61 @@
 [
     {
         "title": "nsywnails.com - Nail Website",
+        "year": 2026,
         "image": "/images/nsyw.jpg",
         "description": "Designed and developed a website for my nail business that showcases my nail art and allows clients to book appointments online. I built a custom appointment booking system to create a more convenient experience for clients. The website acts as a professional way to establish my small business."
     },
     {
         "title": "Cooking Time Predictor",
+        "year": 2026,
         "image": "/images/yum.jpg",
         "description": "DSC 80 Final Project using Food.com data. Analyzed recipe data to investigate the relationship between recipe characteristics and cooking time. Used Python to clean and explore the dataset, identify patterns in factors, and develop machine learning models to predict recipe preparation time."
     },
     {
         "title": "Nail Appointment Scheduler",
+        "year": 2025,
         "image": "/images/nailbooks.jpg",
         "description": "Prior to building my website, I booked nail appointments via Google Forms which was often tedious to manually assign appointments. I built a way to automate the asisgnment process using Python Pandas and connected it to my Google Forms results CSV in order to quickly schedule my month."
     },
     {
         "title": "Personal Portfolio",
+        "year": 2026,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Portfolio Website"
     },
     {
         "title": "NYPD Pepper Spray",
+        "year": 2026,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "DSC 106 Project 2"
     },
     {
         "title": "Song Recommender",
+        "year": 2025,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "DSC 10 Midterm Project"
     },
     {
         "title": "Aperiam, cumque eius! Maxime?",
+        "year": 2024,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Nam praesentium, mollitia rerum tempore blanditiis fugiat! Delectus dolores voluptates cupiditate\n                temporibus alias illum voluptate sed odio molestiae magni. Ratione facilis at modi molestiae illo.\n                Necessitatibus sunt esse ab et!"
     },
     {
         "title": "Odio quo maiores molestiae?",
+        "year": 2024,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Veritatis eum corporis quos iure mollitia similique nulla deleniti aliquid culpa? Saepe fugit cum\n                laudantium? Accusantium voluptatem sed voluptates sapiente reprehenderit at sit. Explicabo iste iure,\n                unde numquam voluptatibus eveniet!"
     },
     {
         "title": "In, unde! Perferendis, necessitatibus.",
+        "year": 2023,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Animi, ullam labore. Natus, ipsa! Enim, magnam? Quas rerum, rem tempora aliquid commodi minus nulla eaque\n                error hic enim, reprehenderit sapiente dolores fugiat dolorem inventore praesentium repellendus corporis\n                fugit libero?"
     },
     {
         "title": "Vitae optio ab error.",
+        "year": 2025,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Sequi veniam reprehenderit veritatis distinctio odit atque error illum animi porro delectus consequatur\n                rem eligendi voluptatem non ipsam sapiente, ad perspiciatis sunt optio expedita ipsum cumque iste! Quas,\n                atque nostrum?"
     },
@@ -56,6 +66,7 @@
     },
     {
         "title": "Totam hic recusandae dolor.",
+        "year": 2025,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Vero deserunt sequi explicabo cupiditate repellat quia ratione magni similique dolor quam voluptatem\n                distinctio a commodi, possimus hic earum enim natus nobis facere? Ad tempore quam non, autem quisquam\n                voluptatibus."
     }
