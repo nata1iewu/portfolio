@@ -33,6 +33,14 @@ function renderPieChart(projectsGiven) {
 
     let arcs = arcData.map((d) => arcGenerator(d));
 
+    //     let colors = d3.scaleOrdinal([
+    //     '#313B2D',
+    //     '#586952',
+    //     '#71816A',
+    //     '#89917D',
+    //     '#A0AA94',
+    //     '#BAC3AE'
+    // ]);
     let colors = d3.scaleOrdinal(d3.schemeTableau10);
     arcs.forEach((arc, idx) => {
         d3.select('#projects-pie-plot')
