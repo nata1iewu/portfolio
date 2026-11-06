@@ -1,7 +1,4 @@
 body {
-  /* Set line height to 1.5 times the font size
-	   and use the OS’s UI font as the website font
-	 */
   font: 100%/1.5 system-ui;
   max-width: 100ch;
   margin-inline: max(1em, (100% - 100ch) / 2);
@@ -199,11 +196,11 @@ html {
   gap: 2em;
 }
 
-svg:has(path:hover) path:not(:hover) {
+#projects-pie-plot:has(path:hover) path:not(:hover) {
   opacity: 0.5;
 }
 
-svg path {
+#projects-pie-plot path {
   transition: opacity 300ms;
 }
 
@@ -212,27 +209,104 @@ svg path {
   stroke-width: 2px;
 }
 
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5em;
+  margin: 0;
+}
+
+dl.info dt {
+  color: gray;
+}
+
+dl.info dd {
+  margin: 0;
+}
+
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  z-index: 10;
+  background: white;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+circle.selected {
+  fill: #ff6b6b;
+}
+
+#chart {
+  width: 100%;
+  overflow: visible;
+}
+
+#chart svg {
+  width: 100%;
+  height: auto;
+}
+
+.gridlines line {
+  stroke: #ddd;
+  stroke-opacity: 0.7;
+}
+
+.gridlines path {
+  stroke: none;
+}
+
+.brush .selection {
+  fill: steelblue;
+  fill-opacity: 0.2;
+  stroke: steelblue;
+}
+
+.brush .overlay {
+  pointer-events: all;
+}
+
 #stats {
   margin: 2rem 0;
 }
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(6, 1fr);
   gap: 1rem;
-  margin: 1rem 0 2rem;
+  margin: 1rem 0;
 }
 
 .stat {
   padding: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color, #ddd);
   border-radius: 10px;
-  background: #f8f9fa;
+  background: color-mix(in oklch, var(--color-accent), canvas 95%);
+  text-align: left;
 }
 
 .stat dt {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: #555;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   margin-bottom: 0.5rem;
 }
 
@@ -241,14 +315,6 @@ svg path {
   font-weight: bold;
   margin: 0;
   color: #244766;
-}
-
-#chart {
-  width: 100%;
-  height: auto;
-  display: block;
-  overflow: visible;
-  margin: 1rem 0;
 }
 
 .axis text {
@@ -267,8 +333,8 @@ svg path {
 }
 
 .grid line {
-  stroke: #ddd;
-  stroke-opacity: 0.7;
+  stroke: #ccc;
+  stroke-opacity: 0.2;
 }
 
 .grid path {
@@ -290,57 +356,63 @@ svg path {
   stroke-width: 1.5;
 }
 
-.brush .selection {
-  fill: #4776a8;
-  fill-opacity: 0.2;
-  stroke: #244766;
-}
-
 #tooltip {
   display: none;
   position: absolute;
   z-index: 10;
-  background: white;
-  border: 1px solid #ccc;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  padding: 0.75rem;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 0.8rem 1rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   pointer-events: none;
 }
 
 #selection-summary {
   margin: 1.5rem 0;
   padding: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color, #ddd);
   border-radius: 10px;
-  background: #f8f9fa;
+  background: color-mix(in oklch, var(--color-accent), canvas 95%);
+}
+
+#selection-summary:empty {
+  display: none;
 }
 
 .selection-count {
   font-weight: bold;
   font-size: 1.1rem;
+  margin-bottom: 0.75rem;
 }
 
-.language-list {
-  padding-left: 1.5rem;
+.language-breakdown {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 0;
+  text-align: center;
 }
 
-.language-list li {
-  margin: 0.35rem 0;
+.language-breakdown div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media (max-width: 600px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.language-breakdown dt {
+  font-family: monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
 
-  .stat {
-    padding: 0.75rem;
-  }
-
-  .stat dd {
-    font-size: 1.2rem;
-  }
+.language-breakdown dd {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #555;
 }

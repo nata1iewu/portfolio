@@ -1,8 +1,9 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+
 async function loadData() {
     const data = await d3.csv('loc.csv', (row) => ({
         ...row,
-        line: Number(row.line), // or just +row.line
+        line: Number(row.line),
         depth: Number(row.depth),
         length: Number(row.length),
         date: new Date(row.date + 'T00:00' + row.timezone),
@@ -42,20 +43,22 @@ function processCommits(data) {
         })
         .sort((a, b) => a.datetime - b.datetime);
 }
+
 function renderCommitInfo(data, commits) {
     const files = d3.groups(data, (d) => d.file);
     const stats = [
-        ['Total lines of code', d3.format(',')(data.length)],
-        ['Total commits', d3.format(',')(commits.length)],
-        ['Files changed', d3.format(',')(files.length)],
-        ['Average lines per commit', d3.format('.1f')(d3.mean(commits, (d) => d.totalLines))],
-        ['Largest commit', d3.format(',')(d3.max(commits, (d) => d.totalLines)) + ' lines'],
-        ['Average line length', d3.format('.1f')(d3.mean(data, (d) => d.length)) + ' characters'],
-        ['Longest line', d3.format(',')(d3.max(data, (d) => d.length)) + ' characters'],
-        ['Maximum nesting depth', d3.format(',')(d3.max(data, (d) => d.depth))],
+        ['COMMITS', d3.format(',')(commits.length)],
+        ['FILES', d3.format(',')(files.length)],
+        ['TOTAL LOC', d3.format(',')(data.length)],
+        ['MAX DEPTH', d3.format(',')(d3.max(data, (d) => d.depth))],
+        ['LONGEST LINE', d3.format(',')(d3.max(data, (d) => d.length))],
+        ['MAX LINES', d3.format(',')(d3.max(commits, (d) => d.totalLines))],
     ];
 
-    const dl = d3.select('#stats')
+    const statsContainer = d3.select('#stats');
+    statsContainer.selectAll('*').remove();
+
+    const dl = statsContainer
         .append('dl')
         .attr('class', 'stats-grid');
 
@@ -96,6 +99,7 @@ function renderScatterplot(commits) {
     const radiusScale = d3.scaleSqrt()
         .domain([0, d3.max(commits, (d) => d.totalLines)])
         .range([4, 17]);
+
     plot.append('g')
         .attr('class', 'grid')
         .call(d3.axisLeft(yScale).tickSize(-innerWidth).tickFormat(''));
@@ -105,7 +109,6 @@ function renderScatterplot(commits) {
         .attr('transform', `translate(0,${innerHeight})`)
         .call(d3.axisBottom(xScale).tickSize(-innerHeight).tickFormat(''));
 
-    // Add axes.
     plot.append('g')
         .attr('class', 'axis')
         .call(d3.axisLeft(yScale).tickFormat((hour) => {
@@ -132,7 +135,9 @@ function renderScatterplot(commits) {
         .attr('text-anchor', 'middle')
         .text('Time of day');
 
-    const tooltip = d3.select('#tooltip'); const dots = plot.append('g')
+    const tooltip = d3.select('#tooltip');
+
+    const dots = plot.append('g')
         .attr('class', 'dots')
         .selectAll('circle')
         .data(commits, (d) => d.id)
@@ -150,11 +155,10 @@ function renderScatterplot(commits) {
             tooltip
                 .style('display', 'block')
                 .html(
-                    `<strong>${d3.timeFormat('%b %-d, %Y')(d.date)}</strong><br>` +
-                    `${d3.timeFormat('%-I:%M %p')(d.datetime)}<br>` +
-                    `${d.totalLines} lines changed<br>` +
-                    `Author: ${d.author}<br>` +
-                    `Commit: ${d.id.slice(0, 7)}`
+                    `<div style="font-weight: 600; margin-bottom: 0.3rem; font-size: 0.95rem;">${d3.timeFormat('%b %-d, %Y')(d.date)} at ${d3.timeFormat('%-I:%M %p')(d.datetime)}</div>` +
+                    `<div><strong>${d.totalLines}</strong> lines edited</div>` +
+                    `<div style="color: #666; margin-top: 0.2rem; font-size: 0.8rem;">Author: ${d.author}</div>` +
+                    `<div style="font-family: monospace; color: #888; font-size: 0.75rem; margin-top: 0.1rem;">commit: ${d.id.slice(0, 7)}</div>`
                 );
         })
         .on('pointermove', (event) => {
@@ -165,7 +169,9 @@ function renderScatterplot(commits) {
         .on('pointerleave', function () {
             d3.select(this).classed('hovered', false);
             tooltip.style('display', 'none');
-        }); dots.sort((a, b) => b.totalLines - a.totalLines);
+        });
+
+    dots.sort((a, b) => b.totalLines - a.totalLines);
 
     const selectionSummary = d3.select('#selection-summary');
 
@@ -177,33 +183,36 @@ function renderScatterplot(commits) {
 
         selectionSummary.selectAll('*').remove();
 
+        if (selectedCommits.length === 0) {
+            return;
+        }
+
         selectionSummary.append('p')
             .attr('class', 'selection-count')
             .text(`${selectedCommits.length} commits selected`);
 
         const selectedLines = selectedCommits.flatMap((commit) => commit.lines);
+        const totalLinesCount = selectedLines.length;
+
         const languageCounts = d3.rollups(
             selectedLines,
             (rows) => rows.length,
             (d) => d.type
         ).sort((a, b) => d3.descending(a[1], b[1]));
 
-        if (selectedCommits.length === 0) {
-            selectionSummary.append('p')
-                .text('Drag across the chart to select commits and see their language breakdown.');
-            return;
+        const dl = selectionSummary.append('dl')
+            .attr('class', 'language-breakdown');
+
+        for (const [type, count] of languageCounts) {
+            const percentage = totalLinesCount > 0 ? d3.format('.1f')((count / totalLinesCount) * 100) : '0.0';
+            const item = dl.append('div');
+            item.append('dt').text(type.toUpperCase());
+            item.append('dd').text(`${count} lines`);
+            item.append('dd').text(`(${percentage}%)`);
         }
+    }
 
-        selectionSummary.append('p').text('Lines by file type:');
-
-        const list = selectionSummary.append('ul')
-            .attr('class', 'language-list');
-
-        list.selectAll('li')
-            .data(languageCounts)
-            .join('li')
-            .text(([type, count]) => `${type}: ${count} lines`);
-    } const brush = d3.brush()
+    const brush = d3.brush()
         .extent([[0, 0], [innerWidth, innerHeight]])
         .on('start brush end', (event) => {
             if (!event.selection) {
@@ -229,6 +238,7 @@ function renderScatterplot(commits) {
 
     updateSelection([]);
 }
+
 const data = await loadData();
 const commits = processCommits(data);
 
