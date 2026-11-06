@@ -211,3 +211,136 @@ svg path {
   stroke: black;
   stroke-width: 2px;
 }
+
+#stats {
+  margin: 2rem 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.stat {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #f8f9fa;
+}
+
+.stat dt {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.stat dd {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  color: #244766;
+}
+
+#chart {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+  margin: 1rem 0;
+}
+
+.axis text {
+  font-size: 11px;
+  fill: #555;
+}
+
+.axis path,
+.axis line {
+  stroke: #888;
+}
+
+.axis-label {
+  font-size: 13px;
+  fill: #333;
+}
+
+.grid line {
+  stroke: #ddd;
+  stroke-opacity: 0.7;
+}
+
+.grid path {
+  display: none;
+}
+
+.commit-dot {
+  cursor: pointer;
+  transition: fill-opacity 0.15s;
+}
+
+.commit-dot.hovered {
+  stroke: #111;
+  stroke-width: 2.5;
+}
+
+.commit-dot.selected {
+  stroke: #111;
+  stroke-width: 1.5;
+}
+
+.brush .selection {
+  fill: #4776a8;
+  fill-opacity: 0.2;
+  stroke: #244766;
+}
+
+#tooltip {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+}
+
+#selection-summary {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #f8f9fa;
+}
+
+.selection-count {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.language-list {
+  padding-left: 1.5rem;
+}
+
+.language-list li {
+  margin: 0.35rem 0;
+}
+
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat {
+    padding: 0.75rem;
+  }
+
+  .stat dd {
+    font-size: 1.2rem;
+  }
+}
