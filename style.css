@@ -344,6 +344,10 @@ circle.selected {
 .commit-dot {
   cursor: pointer;
   transition: fill-opacity 0.15s;
+
+  @starting-style {
+    r: 0;
+  }
 }
 
 .commit-dot.hovered {
@@ -415,4 +419,110 @@ circle.selected {
   font-size: 1rem;
   line-height: 1.4;
   color: #555;
+}
+
+#files {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+#files>div {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+#files dt {
+  grid-column: 1;
+}
+
+#files dd {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  align-content: start;
+  gap: 0.15em;
+  padding-top: 0.6em;
+  margin-left: 0;
+}
+
+.loc {
+  display: flex;
+  width: 0.5em;
+  aspect-ratio: 1;
+  background: var(--color);
+  border-radius: 50%;
+}
+
+#scrolly-1 {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+}
+
+#scrolly-1>* {
+  flex: 1;
+}
+
+#scatter-story {
+  position: relative;
+}
+
+#scatter-plot {
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: auto;
+  height: 50vh;
+}
+
+.step {
+  padding-bottom: 2vh;
+}
+
+#scrolly-1 {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1.3fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+#files {
+  min-width: 0;
+  position: sticky;
+  top: 1rem;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+#scatter-story {
+  min-width: 0;
+}
+
+#scatter-plot {
+  position: sticky;
+  top: 1rem;
+  height: fit-content;
+  min-width: 0;
+}
+
+#chart {
+  width: 100%;
+  height: auto;
+}
+
+.step {
+  padding-bottom: 10vh;
+}
+
+@media (max-width: 900px) {
+  #scrolly-1 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #scatter-plot {
+    grid-column: 1 / -1;
+    position: relative;
+  }
 }

@@ -10,22 +10,34 @@
 
 <body>
     <main>
+        <div class="commit-filter">
+            <label for="commit-progress">Show commits until:</label>
+            <input type="range" id="commit-progress" min="0" max="100" value="100">
+            <time id="commit-time"></time>
+        </div>
         <section class="github-stats">
             <h2>Summary</h2>
             <div id="stats"></div>
         </section>
 
-        <section>
-            <h2>Commits by time of day</h2>
+        <div id="scrolly-1">
 
-            <svg id="chart"></svg>
+            <div id="files"></div>
 
-            <div id="tooltip"></div>
+            <div id="scatter-story"></div>
 
-            <div id="selection-summary"></div>
-        </section>
+            <div id="scatter-plot">
+                <section>
+                    <h2>Commits by time of day</h2>
+                    <svg id="chart"></svg>
+                    <div id="tooltip"></div>
+                    <div id="selection-summary"></div>
+                </section>
+            </div>
+
+        </div>
     </main>
-
+    <script type="module" src="../global.js"></script>
     <script type="module" src="main.js"></script>
 </body>
 
