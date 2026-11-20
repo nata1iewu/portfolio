@@ -390,6 +390,22 @@ d3.select('#scatter-story')
             Then I looked over all I had made, and I saw that it was very good.
         `,
     );
+d3.select('#file-story')
+    .selectAll('.step')
+    .data(commits)
+    .join('div')
+    .attr('class', 'step')
+    .html((d, i) => `
+        <p>
+            On ${d.datetime.toLocaleString('en-US', {
+        dateStyle: 'long',
+        timeStyle: 'short',
+    })},
+            I made ${d.totalLines} changes across
+            ${d3.rollups(d.lines, (lines) => lines.length, (line) => line.file).length}
+            files.
+        </p>
+    `);
 function onStepEnter(response) {
     const commit = response.element.__data__;
 
@@ -398,7 +414,6 @@ function onStepEnter(response) {
     );
 
     updateScatterPlot(filteredCommits);
-    updateFileDisplay(filteredCommits);
 }
 
 const scroller = scrollama();
@@ -409,3 +424,23 @@ scroller
         step: '#scrolly-1 .step',
     })
     .onStepEnter(onStepEnter);
+
+
+function onFileStepEnter(response) {
+    const commit = response.element.__data__;
+
+    filteredCommits = commits.filter(
+        (d) => d.datetime <= commit.datetime
+    );
+
+    updateFileDisplay(filteredCommits);
+}
+
+const fileScroller = scrollama();
+
+fileScroller
+    .setup({
+        container: '#scrolly-2',
+        step: '#scrolly-2 .step',
+    })
+    .onStepEnter(onFileStepEnter);
